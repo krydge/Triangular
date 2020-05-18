@@ -5,8 +5,8 @@ public class Cell {
 
 
     private boolean isPhone = false;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
     char symbol = 'o';
 
     public char getSymbol() {
@@ -17,7 +17,7 @@ public class Cell {
         this.symbol = symbol;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
@@ -25,7 +25,7 @@ public class Cell {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
