@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -25,6 +27,7 @@ public class Main {
         }
         System.out.println(getDistance(board[0][0],board[1][1]));
         System.out.println("Hello world");
+        setUserChoice();
 
     }
 
@@ -34,5 +37,20 @@ public class Main {
         return distance;
     }
 
+    public static UserChoice setUserChoice(){
+        UserChoice userChoice = new UserChoice();
+        double x= 0.0;
+        double y= 0.0;
+        Scanner myObj = new Scanner(System.in);
+
+        System.out.println("What is the x cordinate");
+        x = myObj.nextDouble();
+        userChoice.setX(x);
+        System.out.println("What is the Y cordinate");
+        y = myObj.nextDouble();
+        userChoice.setY(y);
+        System.out.println("x: "+ userChoice.getX() + " " + "y: "+ userChoice.getY());
+        return userChoice;
+    }
 
 }
