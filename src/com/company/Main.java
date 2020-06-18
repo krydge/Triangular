@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.Scanner;
+import java.util.Timer;
 
 public class Main {
 
@@ -18,6 +19,7 @@ public class Main {
         Cell[][] board = new Cell[rows][columns];
 
         // build game board
+        /*
         for( int i = 0 ; i <rows; i++){
             for( int j= 0; j<columns; j++){
                 board[i][j] = new Cell();
@@ -30,15 +32,20 @@ public class Main {
                 System.out.print(board[i][j].getSymbol() +"  ");
             }
             System.out.println();
-        }
+        }*/
+
+        BuildBoard(board, rows, columns);
+        System.out.println("Board is built");
 
 
         //************************************************Set phone locaton********************************//
         Cell phoneLocation = SetPhoneLocation(columns, rows);
         board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].setPhone(true);
-        System.out.println(board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].isPhone());
         board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].setSymbol('*');
-
+        PrintBoard(board,rows,columns);
+        System.out.println("Phone location is set.");
+        //System.out.println(board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].isPhone());
+        /*
         for( int i = 0 ; i <rows; i++){
             for( int j = 0; j <columns; j++){
                 System.out.print(board[i][j].getSymbol() +"  ");
@@ -49,6 +56,7 @@ public class Main {
         userChoice = setUserChoice();
         System.out.println(userChoice.getX() +" "+ userChoice.getY());
         System.out.println(IsChoicePhoneLocation(userChoice, phoneLocation));
+        */
 
         //****************************************Tests****************************************************//
        // boolean pass;
@@ -109,7 +117,11 @@ public class Main {
     }
 
     //**************************************Set Timer********************************************************//2
-
+    public  static Timer setTimer(int time){
+        Timer timer = new Timer();
+        
+        return timer;
+    }
     //*****************************************Test Functions*************************************************//
     public static boolean testPhoneLocationInMap(int col, int rows){
         Cell cell = new Cell();
@@ -130,5 +142,28 @@ public class Main {
 
         return true;
     }
+    public static void BuildBoard(Cell[][] board, int rows, int col){
+        for( int i = 0 ; i <rows; i++){
+            for( int j= 0; j<col; j++){
+                board[i][j] = new Cell();
+                board[i][j].setX(i);
+                board[i][j].setY(j);
+            }
+        }
+        PrintBoard(board, rows, col);
+    }
 
+    public static void PrintBoard(Cell[][] board, int rows, int col){
+        for( int i = 0 ; i <rows; i++){
+            for( int j = 0; j <col; j++){
+                System.out.print(board[i][j].getSymbol() +"  ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static boolean GameLoop(Cell[][] board, int rows, int col, Cell phoneLocation){
+
+        return false;
+    }
 }
