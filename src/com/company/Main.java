@@ -12,11 +12,11 @@ public class Main {
          int columns = 10 ;
          int rows = 10;
          UserChoice userChoice = new UserChoice();
-
-
+         Cell[][] board = new Cell[rows][columns];
+         Cell phoneLocation = SetPhoneLocation(columns, rows);
 
          //**************************************Game board Set up*******************************************//
-        Cell[][] board = new Cell[rows][columns];
+        GameLoop(board,rows,columns,phoneLocation);
 
         // build game board
         /*
@@ -34,16 +34,18 @@ public class Main {
             System.out.println();
         }*/
 
+        /*
         BuildBoard(board, rows, columns);
         System.out.println("Board is built");
 
-
+*/
         //************************************************Set phone locaton********************************//
-        Cell phoneLocation = SetPhoneLocation(columns, rows);
-        board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].setPhone(true);
+
+        /*board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].setPhone(true);
         board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].setSymbol('*');
         PrintBoard(board,rows,columns);
         System.out.println("Phone location is set.");
+        */
         //System.out.println(board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].isPhone());
         /*
         for( int i = 0 ; i <rows; i++){
@@ -98,7 +100,7 @@ public class Main {
     }
 
 
-    //*************************************Get Randome phone starting location******************************//
+    //*************************************Get Random phone starting location******************************//
     public static Cell SetPhoneLocation(int col, int row){
         Cell cell = new Cell();
         cell.setY( (int) (Math.random() * col - 1));
@@ -150,7 +152,7 @@ public class Main {
                 board[i][j].setY(j);
             }
         }
-        PrintBoard(board, rows, col);
+        //PrintBoard(board, rows, col);
     }
 
     public static void PrintBoard(Cell[][] board, int rows, int col){
@@ -163,7 +165,21 @@ public class Main {
     }
 
     public static boolean GameLoop(Cell[][] board, int rows, int col, Cell phoneLocation){
+        BuildBoard(board, rows, col);
+        UserChoice userChoice = new UserChoice();
+        Cell convertedUserChoice = new Cell();
+        board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].setPhone(true);
+        board[(int) phoneLocation.getX()][(int) phoneLocation.getY()].setSymbol('*');
+        PrintBoard(board,rows,col);
+        System.out.println("We need you to trace the kidnappers location. you have 4 chances to do so.");
+        for ( int i = 0; i < 3; i ++){
 
+
+            userChoice = setUserChoice();
+            convertedUserChoice.setX((int) userChoice.getY());
+            convertedUserChoice.setY((int) userChoice.getX());
+            System.out.println("The Radius of the circle is "+ getDistance(phoneLocation, convertedUserChoice));
+        }
         return false;
     }
 }
