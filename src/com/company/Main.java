@@ -2,15 +2,36 @@ package com.company;
 
 import java.util.Scanner;
 import java.util.Timer;
+import javax.swing.*;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello world");
+        //Swing setup
+        JFrame frame = new JFrame();
+        int screenWidth = 500;
+        int screenHeight= 500;
+        frame.setSize(screenWidth,screenHeight);
+        frame.setName("Triangular");
+
+
+
+        //System.out.println("Hello world");
 
         //***************************************Board Demensions*******************************************//
          int columns = 10 ;
          int rows = 10;
+         JButton[][] jboard = new JButton[rows][columns];
+        //makeJframeBoard(rows,columns,frame,jboard);
+        for( int i = 0 ; i <rows; i++){
+            for( int j= 0; j<columns; j++){
+                jboard[i][j]= new JButton("i"+"j");
+                jboard[i][j].setBounds(i*10,j*10,10,10);
+                frame.add(jboard[i][j]);
+            }
+        }
+        frame.setVisible(true);
          UserChoice userChoice = new UserChoice();
          Cell[][] board = new Cell[rows][columns];
          Cell phoneLocation = SetPhoneLocation(columns, rows);
@@ -81,7 +102,19 @@ public class Main {
         return distance;
     }
 
+    //************************************************create JFrame Button board ******************************//
+    public static void makeJframeBoard(int rows, int columns,JFrame frame,JButton[][] jboard){
+        JButton[][] buton = new JButton[rows][columns];
+        for( int i = 0 ; i <rows; i++){
+            for( int j= 0; j<columns; j++){
 
+                buton[i][j].setBounds(rows,columns,10,10);
+                jboard[i][j].add(buton[i][j]);
+
+            }
+        }
+
+    }
     //************************************************Get User Choice******************************************//
     public static UserChoice setUserChoice(){
         UserChoice userChoice = new UserChoice();
