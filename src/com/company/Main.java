@@ -10,13 +10,10 @@ public class Main {
     public static void main(String[] args) {
         //Swing setup
         JFrame frame = new JFrame();
-        int screenWidth = 500;
-        int screenHeight= 500;
+        int screenWidth = 515;
+        int screenHeight= 537;
         frame.setSize(screenWidth,screenHeight);
         frame.setName("Triangular");
-
-
-
         //System.out.println("Hello world");
 
         //***************************************Board Demensions*******************************************//
@@ -26,9 +23,14 @@ public class Main {
         //makeJframeBoard(rows,columns,frame,jboard);
         for( int i = 0 ; i <rows; i++){
             for( int j= 0; j<columns; j++){
-                jboard[i][j]= new JButton("i"+"j");
-                jboard[i][j].setBounds(i*10,j*10,10,10);
+                jboard[i][j]= new JButton(String.valueOf(i)+","+String.valueOf(j));
+                jboard[i][j].setBounds(i*50,j*50,50,50);
                 frame.add(jboard[i][j]);
+                if(i==9&&j==9){
+                    frame.remove(jboard[i][j]);
+                    jboard[i][j].setBounds(9*50,9*50,10,10);
+                    //frame.add(jboard[i][j]);
+                }
             }
         }
         frame.setVisible(true);
@@ -103,7 +105,7 @@ public class Main {
     }
 
     //************************************************create JFrame Button board ******************************//
-    public static void makeJframeBoard(int rows, int columns,JFrame frame,JButton[][] jboard){
+   /*public static void makeJframeBoard(int rows, int columns,JFrame frame,JButton[][] jboard){
         JButton[][] buton = new JButton[rows][columns];
         for( int i = 0 ; i <rows; i++){
             for( int j= 0; j<columns; j++){
@@ -115,6 +117,8 @@ public class Main {
         }
 
     }
+
+    */
     //************************************************Get User Choice******************************************//
     public static UserChoice setUserChoice(){
         UserChoice userChoice = new UserChoice();
